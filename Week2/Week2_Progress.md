@@ -42,3 +42,14 @@ ChatGPT được sử dụng để hỗ trợ tìm hiểu OOP và rà soát báo
 
 - Commit minh chứng: https://github.com/trantrongnghia140307-source/EventTicketingSystem/commit/1a0838f09cd314ebd269d757d3b535b36420ca72
 
+- Ảnh kết quả chạy demo: https://github.com/trantrongnghia140307-source/EventTicketingSystem/blob/main/Week2/Week2_Demo_Result.png.jpg
+7. Thành viên và phân công công việc
+
+ Thành viên 1: Trần Trọng Nghĩa – 25110046
+  - Tiếp tục hoàn thiện mô hình miền OOP từ Tuần 1, tập trung vào lớp Event và Ticket, quản lý danh sách vé đã phát hành bằng Dictionary<string, Ticket>.
+  - Hoàn thiện cơ chế quản lý sức chứa trong TicketTier, sử dụng TryReserveSeat() để kiểm soát số lượng vé có thể bán.
+  - Phối hợp rà soát tính nhất quán giữa mô hình miền và quy trình mua vé.
+ Thành viên 2: Trần Việt Tiến – 25110064
+  - Triển khai nghiệp vụ mua vé trong lớp TicketingService thông qua phương thức BuyTicket().
+  - Xây dựng chức năng tạo mã vé bằng Guid, định dạng mã gồm 8 ký tự chữ và số in hoa.
+  - Xây dựng và chạy chương trình Week2.Demo để minh họa mua vé thành công, ngăn bán vượt sức chứa và kiểm tra tính duy nhất của mã vé.
