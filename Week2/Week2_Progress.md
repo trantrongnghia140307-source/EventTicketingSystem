@@ -13,8 +13,32 @@ Tiếp tục phát triển hệ thống từ nền tảng OOP của Tuần 1, t�
 +	Kế thừa và đa hình: Tiếp tục sử dụng TicketTier, GeneralTier và VIPTier từ Tuần 1.
 +	Phân chia trách nhiệm: Event quản lý thông tin sự kiện và vé đã phát hành; TicketTier quản lý sức chứa; TicketingService xử lý nghiệp vụ mua vé.
 4. Hạn chế và kế hoạch tiếp theo
-Chưa có project unit test tự động riêng; chưa kiểm thử trường hợp hạng vé không thuộc sự kiện. Quy trình check-in và các báo cáo doanh thu, tham dự cũng chưa hoàn thiện.
-Kế hoạch tiếp theo là bổ sung kiểm thử, hoàn thiện check-in, ngăn sử dụng vé nhiều lần và phát triển các chức năng báo cáo.
+Hạn chế:
+- Chưa có project unit test tự động riêng để kiểm thử các chức năng và trường hợp biên.
+- Chưa kiểm thử trường hợp hạng vé không thuộc sự kiện đang mua vé.
+- Quy trình check-in và các báo cáo doanh thu, tham dự chưa hoàn thiện trong phạm vi Tuần 2.
+
+Kế hoạch Tuần 3:
+- Xây dựng và chạy unit test tự động cho quy trình mua vé, kiểm soát sức chứa và các trường hợp lỗi.
+- Hoàn thiện chức năng check-in và ngăn sử dụng lại vé đã check-in.
+- Phát triển báo cáo doanh thu theo từng hạng vé và tổng doanh thu.
+- Phát triển báo cáo tham dự, bao gồm số vé đã bán, số vé đã check-in và số vé chưa được sử dụng để check-in.
+- Kiểm thử các chức năng mới và ghi nhận kết quả thực tế.
 5. Sử dụng AI
 ChatGPT được sử dụng để hỗ trợ tìm hiểu OOP và rà soát báo cáo. Nội dung được đối chiếu với mã nguồn và kết quả demo; các chức năng chưa hoàn thành được ghi rõ là hạn chế.
+
+6. Liên kết mã nguồn và minh chứng
+- Repository: https://github.com/trantrongnghia140307-source/EventTicketingSystem
+  
+- Mã nguồn Week 2: https://github.com/trantrongnghia140307-source/EventTicketingSystem/tree/main/Week2
+  
+- TicketingService.cs: https://github.com/trantrongnghia140307-source/EventTicketingSystem/blob/main/Week2/EventTicketing.Services/TicketingService.cs
+  
+- Event.cs: https://github.com/trantrongnghia140307-source/EventTicketingSystem/blob/main/Week2/EventTicketing.Domain/Event.cs
+  
+- TicketTier.cs: https://github.com/trantrongnghia140307-source/EventTicketingSystem/blob/main/Week2/EventTicketing.Domain/TicketTier.cs
+
+- Program.cs: https://github.com/trantrongnghia140307-source/EventTicketingSystem/blob/main/Week2/Week2.Demo/Program.cs
+
+- Commit minh chứng: https://github.com/trantrongnghia140307-source/EventTicketingSystem/commit/1a0838f09cd314ebd269d757d3b535b36420ca72
 
