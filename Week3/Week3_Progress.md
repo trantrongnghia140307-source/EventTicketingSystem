@@ -46,7 +46,7 @@ ChatGPT được sử dụng để hỗ trợ tìm hiểu các nguyên lý OOP, 
 - **Repository:** https://github.com/trantrongnghia140307-source/EventTicketingSystem
 - **Mã nguồn Week 3:** https://github.com/trantrongnghia140307-source/EventTicketingSystem/tree/main/Week3
 - **Event.cs:** https://github.com/trantrongnghia140307-source/EventTicketingSystem/blob/main/Week3/EventTicketing.Domain/Event.cs
-- **Ticket.cs:** [https://github.com/trantrongnghia140307-source/EventTicketingSystem/blob/main/Week3/EventTicketing.Domain/Ticket.cs
+- **Ticket.cs:** https://github.com/trantrongnghia140307-source/EventTicketingSystem/blob/main/Week3/EventTicketing.Domain/Ticket.cs
 - **TicketTier.cs:** https://github.com/trantrongnghia140307-source/EventTicketingSystem/blob/main/Week3/EventTicketing.Domain/TicketTier.cs
 - **TicketingService.cs:** https://github.com/trantrongnghia140307-source/EventTicketingSystem/blob/main/Week3/EventTicketing.Services/TicketingService.cs
 - **CheckInService.cs:** https://github.com/trantrongnghia140307-source/EventTicketingSystem/blob/main/Week3/EventTicketing.Services/CheckInService.cs
