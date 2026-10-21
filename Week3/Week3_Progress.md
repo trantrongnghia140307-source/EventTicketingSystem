@@ -55,7 +55,7 @@ ChatGPT được sử dụng để hỗ trợ tìm hiểu các nguyên lý OOP, 
 - **Ảnh kết quả chạy chương trình:**
 -  https://github.com/trantrongnghia140307-source/EventTicketingSystem/blob/main/Week3/Week3_Demo_Result.png.jpg
 -  https://github.com/trantrongnghia140307-source/EventTicketingSystem/blob/main/Week3/Week3_Demo_Result%20-%201.png.jpg
-- **Commit minh chứng Tuần 3:** 
+- **Commit minh chứng Tuần 3:** https://github.com/trantrongnghia140307-source/EventTicketingSystem/commit/a6c71d25059a61100ce4395f246aad898668a6fc
 
 ## 7. Thành viên và phân công công việc
 
