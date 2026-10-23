@@ -5,8 +5,7 @@
 ## 1. Mục tiêu
 
 Trong tuần 3, nhóm em tiếp tục phát triển hệ thống từ phần mô hình OOP đã làm ở tuần 1 và chức năng mua vé ở tuần 2. Ở giai đoạn này, nhóm em tập trung vào việc kiểm tra vé tại sự kiện, tránh để một vé được check-in nhiều lần và bổ sung báo cáo doanh thu, tình hình tham dự.
-Ngoài việc hoàn thiện các chức năng trên, nhóm em cũng muốn kiểm tra xem hệ thống có xử lý đúng khi người dùng nhập mã vé sai, mua vé khi đã hết chỗ hoặc có nhiều yêu cầu xảy ra cùng lúc hay không
-kiện.
+Ngoài việc hoàn thiện các chức năng trên, nhóm em cũng muốn kiểm tra xem hệ thống có xử lý đúng khi người dùng nhập mã vé sai, mua vé khi đã hết chỗ hoặc có nhiều yêu cầu xảy ra cùng lúc hay không.
 
 ## 2. Công việc đã thực hiện
 
