@@ -83,20 +83,13 @@ Việc tìm vé, kiểm tra trạng thái và đánh dấu check-in được th�
 
 
 ### 2.5. Điều chỉnh chức năng báo cáo doanh thu và điểm danh
-Trong Tuần 4, nhóm em tiếp tục hoàn thiện `ReportingService` để sử dụng chung cho chương trình Demo và ứng dụng Web.
-Điểm điều chỉnh quan trọng nằm ở cách tính doanh thu:
+Trong Tuần 4, nhóm em tiếp tục sử dụng `ReportingService` đã xây dựng từ Tuần 3 và mở rộng quy trình mua vé để hỗ trợ áp dụng voucher.
 
-- Ở phiên bản Tuần 3, doanh thu trong kịch bản Demo được tính theo giá thực trả của các vé đã phát hành. Khi đó, kịch bản kiểm thử chưa có voucher nên tổng doanh thu là 2.900.000 VNĐ.
-- Trong phiên bản Tuần 4, nhóm em bổ sung voucher và sử dụng `PricePaid` để ghi nhận số tiền thực tế của từng vé. Do đó, báo cáo doanh thu được tính bằng cách cộng `PricePaid` của các vé thuộc từng hạng vé.
+Ở phiên bản Tuần 3, thuộc tính `PricePaid` đã được sử dụng để lưu giá thực tế khách hàng thanh toán. Tuy nhiên, kịch bản Demo lúc đó chưa áp dụng voucher nên các vé được ghi nhận theo giá thông thường.
 
-Nhờ điều chỉnh này, những vé được mua bằng voucher cũng được ghi nhận đúng số tiền khách hàng đã thanh toán.
-Nhóm em sử dụng các đối tượng dữ liệu báo cáo:
+Sang Tuần 4, nhóm em bổ sung hai loại voucher và tích hợp vào `TicketingService`. Khi mua vé có áp dụng voucher, giá sau giảm được lưu vào `PricePaid`. `ReportingService` tiếp tục cộng giá thực trả của từng vé để tính doanh thu theo hạng vé và tổng doanh thu sự kiện.
 
- `TierSalesLine`: Chứa tên hạng vé, số vé đã bán, sức chứa và doanh thu.
- `SalesReport`: Chứa tên sự kiện, danh sách doanh thu từng hạng vé, tổng số vé đã bán và tổng doanh thu.
- `AttendanceReport`: Chứa tổng vé đã bán, số vé đã check-in, số vé vắng mặt và tỷ lệ tham dự.
-
-Báo cáo điểm danh tiếp tục được tính dựa trên trạng thái check-in thực tế của từng vé.
+Nhờ vậy, hệ thống có thể phản ánh chính xác doanh thu ngay cả khi khách hàng sử dụng mã giảm giá.
 
 ### 2.6. Xây dựng ứng dụng Web
 
@@ -198,8 +191,7 @@ Chương trình Demo hoàn thành **31 PASS, 0 FAIL**, cho thấy cả 5 nhóm k
 
 ## 5. Sử dụng AI trong quá trình thực hiện
 
-Trong quá trình thực hiện Tuần 4, nhóm em có sử dụng ChatGPT, Claude, Youtube, Google làm công cụ hỗ trợ học tập và phát triển dự án.
-
+Trong quá trình thực hiện Tuần 4, nhóm em có sử dụng ChatGPT và Claude làm công cụ hỗ trợ học tập và phát triển dự án. Ngoài ra, nhóm em cũng tham khảo một số video hướng dẫn trên YouTube và sử dụng Google để tìm kiếm tài liệu phục vụ việc tìm hiểu.
 Do nhóm em chưa được học chuyên sâu về lập trình Web và ASP.NET Core, nhóm đã sử dụng AI nhiều hơn ở phần xây dựng ứng dụng Web, bao gồm:
 
 - Hỗ trợ tìm hiểu cấu trúc một ứng dụng ASP.NET Core Web API.
@@ -208,11 +200,11 @@ Do nhóm em chưa được học chuyên sâu về lập trình Web và ASP.NET 
 - Hỗ trợ kết nối giao diện với các API mua vé, check-in và báo cáo.
 - Giải thích lỗi, gợi ý cách kiểm tra và điều chỉnh mã nguồn khi chạy chương trình.
 
-Ngoài phần Web, nhóm em cũng sử dụng AI để giải thích một số kiến thức OOP
+Ngoài phần Web, nhóm em cũng sử dụng AI để giải thích một số kiến thức OOP.
 Nhóm em không xem nội dung do AI tạo ra là kết quả đã được kiểm chứng. Sau khi nhận hỗ trợ, nhóm chúng em đã đọc lại mã nguồn, đối chiếu với cấu trúc dự án, chạy chương trình Demo và kiểm tra trực tiếp trên giao diện Web.
 Đối với phần nghiệp vụ, nhóm em chú trọng kiểm tra các chức năng quan trọng như kiểm soát sức chứa, mã vé duy nhất, áp dụng voucher, lưu giá thực trả, chống check-in trùng lặp và tính doanh thu.
 
-Nhóm em xin trình bày trung thực rằng AI đã hỗ trợ đáng kể trong việc tìm hiểu và triển khai phần Web do đây là kiến thức nhóm chúng em chưa được học chuyên sâu. Tuy nhiên, nhóm em vẫn trực tiếp kiểm tra, chạy thử, đối chiếu kết quả
+Nhóm em xin trình bày trung thực rằng AI đã hỗ trợ đáng kể trong việc tìm hiểu và triển khai phần Web do đây là kiến thức nhóm chúng em chưa được học chuyên sâu. Tuy nhiên, nhóm em vẫn trực tiếp kiểm tra, chạy thử, đối chiếu kết quả.
 
 ## 6. Liên kết mã nguồn và minh chứng
 
