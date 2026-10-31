@@ -15,7 +15,10 @@
 - **ApiController.cs:** https://github.com/trantrongnghia140307-source/EventTicketingSystem/blob/main/Week4/EventTicketing.Web/Controllers/ApiController.cs
 - **index.html:** https://github.com/trantrongnghia140307-source/EventTicketingSystem/blob/main/Week4/EventTicketing.Web/wwwroot/index.html
 - **EventTicketingSystem.slnx:** https://github.com/trantrongnghia140307-source/EventTicketingSystem/blob/main/Week4/EventTicketingSystem.slnx
-- 
+  
 - **Ảnh kết quả chạy chương trình:**
   
-- **Commit minh chứng Tuần 4:** 
+- **Commit minh chứng Tuần 4:**
+  https://github.com/trantrongnghia140307-source/EventTicketingSystem/commit/bf00f10d84eb254dff72c0058660c8406c649a5a
+  https://github.com/trantrongnghia140307-source/EventTicketingSystem/commit/a71dfddf9448141858a387e277bf1e666f14fc2a
+  
