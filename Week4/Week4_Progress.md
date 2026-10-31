@@ -94,7 +94,7 @@ Nhờ vậy, hệ thống có thể phản ánh chính xác doanh thu ngay cả 
 ### 2.6. Xây dựng ứng dụng Web
 
 Trong Tuần 4, nhóm em mở rộng dự án từ chương trình xử lý nghiệp vụ và Demo trên Console sang ứng dụng Web.
-Do nhóm em chưa được học chuyên sâu về phát triển Web, đặc biệt là ASP.NET Core, HTML, CSS và JavaScript, nên trong quá trình thực hiện, nhóm em đã sử dụng các công cụ AI: ChatGPT và Claude, 1 số video hướng dẫn trên youTube để hỗ trợ tìm hiểu và triển khai phần Web.
+Do nhóm em chưa được học chuyên sâu về phát triển Web, đặc biệt là ASP.NET Core, HTML, CSS và JavaScript, nên trong quá trình thực hiện, nhóm em đã sử dụng các công cụ AI: ChatGPT, 1 số video hướng dẫn trên youTube để hỗ trợ tìm hiểu và triển khai phần Web.
 Cụ thể, nhóm em nhờ AI hỗ trợ giải thích kiến trúc ứng dụng Web, giao diện ban đầu, đề xuất và hỗ trợ viết, điều chỉnh một số đoạn mã nguồn, cũng như hướng dẫn cách kết nối giao diện với các API xử lý nghiệp vụ.
 Sau khi nhận được nội dung hỗ trợ, nhóm em đã cùng đọc, tìm hiểu, điều chỉnh mã nguồn cho phù hợp với cấu trúc dự án và kiểm tra lại bằng cách chạy ứng dụng, thử các chức năng thực tế. Nhóm em không xem các nội dung do AI cung cấp là kết quả chắc chắn đúng mà sử dụng như một công cụ hỗ trợ học tập và phát triển sản phẩm.
 
@@ -191,7 +191,7 @@ Chương trình Demo hoàn thành **31 PASS, 0 FAIL**, cho thấy cả 5 nhóm k
 
 ## 5. Sử dụng AI trong quá trình thực hiện
 
-Trong quá trình thực hiện Tuần 4, nhóm em có sử dụng ChatGPT và Claude làm công cụ hỗ trợ học tập và phát triển dự án. Ngoài ra, nhóm em cũng tham khảo một số video hướng dẫn trên YouTube và sử dụng Google để tìm kiếm tài liệu phục vụ việc tìm hiểu.
+Trong quá trình thực hiện Tuần 4, nhóm em có sử dụng ChatGPT làm công cụ hỗ trợ học tập và phát triển dự án. Ngoài ra, nhóm em cũng tham khảo một số video hướng dẫn trên YouTube và sử dụng Google để tìm kiếm tài liệu phục vụ việc tìm hiểu.
 Do nhóm em chưa được học chuyên sâu về lập trình Web và ASP.NET Core, nhóm đã sử dụng AI nhiều hơn ở phần xây dựng ứng dụng Web, bao gồm:
 
 - Hỗ trợ tìm hiểu cấu trúc một ứng dụng ASP.NET Core Web API.
