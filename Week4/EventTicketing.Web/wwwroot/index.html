@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NT Ticket - Event Ticketing System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .brand-bg { background-color: #00B14F; }
+        .brand-text { color: #00B14F; }
+        select option { background-color: #1f2937; color: #ffffff; }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-sans antialiased">
+
+    <header class="brand-bg sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-6">
+                <h1 class="text-2xl font-black italic tracking-wider text-white">NT TICKET</h1>
+                <div class="relative hidden md:block">
+                    <input type="text" placeholder="Bạn tìm gì hôm nay?" class="w-80 px-4 py-1.5 rounded-full text-black text-sm focus:outline-none">
+                    <i class="fa-solid fa-magnifying-glass absolute right-3 top-2.5 text-gray-500"></i>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4 text-sm font-semibold">
+                <button class="bg-emerald-700 hover:bg-emerald-800 px-4 py-1.5 rounded-full text-white">Tạo sự kiện</button>
+                <span class="cursor-pointer">Vé của tôi</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-8 space-y-8">
+        <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <i class="fa-solid fa-calendar-star brand-text text-2xl"></i>
+                <div>
+                    <h3 class="font-bold text-lg">Chọn Sự Kiện Muốn Tham Gia:</h3>
+                    <p class="text-xs text-gray-400">Đang có nhiều sự kiện mở bán vé song song</p>
+                </div>
+            </div>
+            <select id="event-select" onchange="onEventChange()" class="bg-gray-900 border border-emerald-500 text-emerald-400 font-bold px-4 py-2.5 rounded-xl w-full md:w-96 focus:outline-none cursor-pointer">
+                <option value="">-- Đang tải danh sách sự kiện... --</option>
+            </select>
+        </div>
+
+        <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-800 bg-gray-800">
+            <img id="event-banner" src="" class="w-full h-80 object-cover opacity-60">
+            <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-gray-950 to-transparent">
+                <span class="bg-emerald-500 text-black px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">SỰ KIỆN NỔI BẬT</span>
+                <h2 id="event-title" class="text-4xl font-extrabold mt-2">Đang tải sự kiện...</h2>
+                <p class="text-gray-300 mt-1"><i class="fa-solid fa-location-dot brand-text mr-2"></i>Sân vận động / Hội trường chính</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 space-y-6">
+                <h3 class="text-2xl font-bold flex items-center gap-2">
+                    <i class="fa-solid fa-ticket brand-text"></i> Chọn Loại Vé
+                </h3>
+                <div id="tier-list" class="space-y-4"></div>
+            </div>
+
+            <div class="space-y-6">
+            <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700 space-y-6 h-fit">
+                <h3 class="text-xl font-bold flex items-center gap-2 border-b border-gray-700 pb-3">
+                    <i class="fa-solid fa-qrcode brand-text"></i> Cổng Soát Vé (Check-in)
+                </h3>
+                <p class="text-xs text-gray-400">Nhập mã vé thu được để quét qua cổng (Tra cứu O(1)):</p>
+
+                <div class="space-y-3">
+                    <input type="text" id="checkin-code" placeholder="NHẬP MÃ VÉ (VD: A1B2C3D4)..." class="w-full px-4 py-2.5 rounded-lg bg-gray-900 border border-gray-700 text-white font-mono uppercase focus:border-emerald-500 focus:outline-none">
+                    <button onclick="handleCheckIn()" class="w-full brand-bg hover:bg-emerald-600 py-2.5 rounded-lg font-bold text-white transition">
+                        Xác Nhận Check-in
+                    </button>
+                </div>
+                <div id="checkin-result" class="hidden p-4 rounded-lg text-sm font-semibold"></div>
+            </div>
+
+            <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700 space-y-4 h-fit">
+                <div class="flex items-center justify-between border-b border-gray-700 pb-3">
+                    <h3 class="text-xl font-bold flex items-center gap-2"><i class="fa-solid fa-chart-column brand-text"></i> Báo cáo</h3>
+                    <button onclick="loadReport()" class="text-xs px-3 py-1 rounded-full bg-gray-700 hover:bg-gray-600">Làm mới</button>
+                </div>
+                <div id="report-box" class="text-sm space-y-3 text-gray-300">Đang tải...</div>
+            </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let allEvents = [];
+        let currentEventId = "";
+
+        async function loadEvents() {
+            try {
+                const res = await fetch('/api/events');
+                allEvents = await res.json();
+
+                const selectEl = document.getElementById('event-select');
+                
+                if (allEvents && allEvents.length > 0) {
+                    selectEl.innerHTML = allEvents.map(evt => `
+                        <option value="${evt.eventId}">${evt.eventName}</option>
+                    `).join('');
+
+                    // FIX LỖI: Giữ nguyên sự kiện đang chọn sau khi mua vé thay vì nhảy về mốc [0]
+                    if (!currentEventId || !allEvents.some(e => e.eventId === currentEventId)) {
+                        currentEventId = allEvents[0].eventId;
+                    }
+                    
+                    selectEl.value = currentEventId;
+                    renderCurrentEvent();
+                } else {
+                    selectEl.innerHTML = `<option value="">Không có sự kiện nào</option>`;
+                }
+            } catch (err) {
+                console.error("Lỗi kết nối Backend:", err);
+            }
+        }
+
+        function onEventChange() {
+            const selectEl = document.getElementById('event-select');
+            currentEventId = selectEl.value;
+            renderCurrentEvent();
+        }
+
+        function renderCurrentEvent() {
+            const evt = allEvents.find(e => e.eventId === currentEventId);
+            if (!evt) return;
+
+            document.getElementById('event-title').innerText = evt.eventName;
+            if (evt.imageUrl) {
+                document.getElementById('event-banner').src = evt.imageUrl;
+            }
+
+            loadReport();
+            const tierListEl = document.getElementById('tier-list');
+            tierListEl.innerHTML = evt.tiers.map(tier => `
+                <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 flex flex-col space-y-4">
+                    <div>
+                        <div class="flex items-center gap-3">
+                            <h4 class="text-xl font-bold">${tier.tierName}</h4>
+                            <span class="text-xs px-2.5 py-0.5 rounded-full bg-gray-700 text-emerald-400 font-semibold">Còn lại: ${tier.available}/${tier.capacity} vé</span>
+                        </div>
+                        <p class="text-sm text-gray-400 mt-1">${tier.perks}</p>
+                        <p class="text-lg font-extrabold brand-text mt-2">${tier.price.toLocaleString('vi-VN')} VNĐ</p>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-3 pt-2 border-t border-gray-700/60">
+                        <input type="text" id="voucher-${tier.tierName.replace(/\s+/g, '')}" placeholder="NHẬP MÃ VOUCHER (NẾU CÓ)..." class="px-3 py-2 bg-gray-900 border border-gray-700 rounded-lg text-sm text-white font-mono uppercase focus:border-emerald-500 focus:outline-none flex-1">
+                        <button onclick="buyTicket('${tier.tierName}')" 
+                                ${tier.available <= 0 ? 'disabled' : ''} 
+                                class="${tier.available <= 0 ? 'bg-gray-600 cursor-not-allowed' : 'brand-bg hover:bg-emerald-600'} px-6 py-2 rounded-lg font-bold text-white transition whitespace-nowrap">
+                            ${tier.available <= 0 ? 'Hết Vé' : 'Mua Ngay'}
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function buyTicket(tierName) {
+            const inputId = `voucher-${tierName.replace(/\s+/g, '')}`;
+            const voucherInput = document.getElementById(inputId);
+            const voucherCode = voucherInput ? voucherInput.value.trim() : "";
+
+            try {
+                const res = await fetch('/api/buy-ticket', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        eventId: currentEventId, 
+                        tierName: tierName, 
+                        voucherCode: voucherCode 
+                    })
+                });
+                const data = await res.json();
+
+                if (data.success) {
+                    alert(`🎉 MUA VÉ THÀNH CÔNG!\n- Mã vé: ${data.ticketCode}\n- Giá thanh toán: ${data.price.toLocaleString('vi-VN')} VNĐ`);
+                    loadEvents(); 
+                } else {
+                    alert(`❌ LỖI: ${data.message}`);
+                }
+            } catch (err) {
+                alert("Lỗi kết nối Server!");
+            }
+        }
+
+        async function handleCheckIn() {
+            const codeInput = document.getElementById('checkin-code');
+            const resultEl = document.getElementById('checkin-result');
+            
+            // FIX LỖI: Thêm .toUpperCase() để ép mã vé thành chữ in hoa trước khi gửi xuống server
+            const code = codeInput.value.trim().toUpperCase();
+
+            if (!code) return alert("Vui lòng nhập mã vé!");
+
+            try {
+                const res = await fetch('/api/checkin', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ ticketCode: code })
+                });
+                const data = await res.json();
+
+                resultEl.classList.remove('hidden', 'bg-red-950', 'text-red-400', 'bg-emerald-950', 'text-emerald-400');
+                if (data.success) {
+                    resultEl.classList.add('bg-emerald-950', 'text-emerald-400');
+                    resultEl.innerHTML = `<i class="fa-solid fa-circle-check mr-2"></i>${data.message}`;
+                    loadReport();
+                } else {
+                    resultEl.classList.add('bg-red-950', 'text-red-400');
+                    resultEl.innerHTML = `<i class="fa-solid fa-circle-xmark mr-2"></i>${data.message}`;
+                }
+            } catch (err) {
+                alert("Lỗi server!");
+            }
+        }
+
+        // Báo cáo doanh thu theo hạng + điểm danh
+        async function loadReport() {
+            const box = document.getElementById('report-box');
+            if (!currentEventId) return;
+            try {
+                const res = await fetch(`/api/events/${encodeURIComponent(currentEventId)}/report`);
+                const data = await res.json();
+                if (!data.success) { box.textContent = data.message; return; }
+                const money = n => Number(n).toLocaleString('vi-VN') + " VNĐ";
+                const s = data.sales, a = data.attendance;
+                box.innerHTML = `
+                    <div>
+                        <p class="font-semibold text-white mb-1">Doanh thu theo hạng</p>
+                        ${s.lines.map(l => `<p class="flex justify-between"><span>${l.tierName} (${l.sold}/${l.capacity})</span><span>${money(l.revenue)}</span></p>`).join('')}
+                        <p class="flex justify-between font-bold text-emerald-400 border-t border-gray-700 mt-1 pt-1"><span>Tổng (${s.totalSold} vé)</span><span>${money(s.totalRevenue)}</span></p>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-white mb-1">Điểm danh</p>
+                        <p class="flex justify-between"><span>Đã check-in</span><span>${a.checkedIn}</span></p>
+                        <p class="flex justify-between"><span>Vắng mặt (no-show)</span><span>${a.noShow}</span></p>
+                        <p class="flex justify-between"><span>Tỷ lệ tham dự</span><span>${a.attendanceRate}%</span></p>
+                    </div>`;
+            } catch (err) {
+                box.textContent = "Không tải được báo cáo.";
+            }
+        }
+
+        loadEvents();
+    </script>
+</body>
+</html>
